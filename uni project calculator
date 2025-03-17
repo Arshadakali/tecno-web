@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include <cmath>
 
 using namespace std;
@@ -125,31 +124,6 @@ public:
         cout << "Perpendicular: " << t->perpendicular << "\n";
         cout << "Hypotenuse: " << t->hypotenuse << "\n";
     }
-
-    void saveTriangleToFile(const Triangle* t, const string& filename) {
-        ofstream outFile(filename.c_str());
-        if (!outFile) {
-            cout << "Error opening file for writing.\n";
-            return;
-        }
-        outFile << t->base << " " << t->perpendicular << " " << t->hypotenuse << endl;
-        outFile.close();
-        cout << "Triangle data saved successfully...\n";
-    }
-
-    void loadTrianglesFromFile(const string& filename) {
-        ifstream inFile(filename.c_str());
-        if (!inFile) {
-            cout << "Error opening file for reading.\n";
-            return;
-        }
-        cout << "Triangles in file:\n";
-        double base, perp, hypotenuse;
-        while (inFile >> base >> perp >> hypotenuse) {
-            cout << "Base: " << base << ", Perpendicular: " << perp << ", Hypotenuse: " << hypotenuse << endl;
-        }
-        inFile.close();
-    }
 };
 
 // Matrix Operations
@@ -193,7 +167,6 @@ int main() {
     RightTriangle::Triangle t;
     
     char choice;
-    const string filename = "triangle_data.txt";
 
     do {
         cout << "\nScientific Calculator:\n";
@@ -233,8 +206,6 @@ int main() {
                     cout << "The triangle is right-angled.\n";
                 else
                     cout << "The triangle is not right-angled.\n";
-                rt.saveTriangleToFile(&t, filename);
-                rt.loadTrianglesFromFile(filename);
                 break;
             }
             case '4': { // Matrix operations
@@ -256,7 +227,5 @@ int main() {
         }
     } while (choice != '5');
 
-    return 0;
+    return 0;
 }
-
-// Compare this snippet from shopping.c%2B%2B:
